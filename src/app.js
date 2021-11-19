@@ -90,6 +90,16 @@ App = {
             $newTaskTemplate.show()
         }
     },
+    createTask : async () => {
+        App.setLoading(true)
+        const content = $('#newTask').val();
+        try {
+            await App.todoList.createTask(content, {from : App.account});
+            window.location.reload();
+        }catch(e){
+            console.log(e);
+        }
+    },
     setLoading: (boolean) => {
         App.loading = boolean
         const loader = $('#loader')
